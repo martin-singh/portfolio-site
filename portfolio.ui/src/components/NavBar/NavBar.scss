@@ -1,0 +1,137 @@
+@use "./../../assets/styles/base" as *;
+
+.navbar {
+  position: fixed;
+  bottom: 0;
+  background-color: $navbar-bg-primary;
+  font-family: $font-sans-serif;
+  font-size: 0.8rem;
+  z-index: 1;
+
+  @include media(laptop) {
+    top: 0;
+    font-size: 1rem;
+  }
+  @include media(desktop) {
+    position: static;
+  }
+
+  &__container {
+    width: 100vw;
+    height: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    transition: width $navbar-container-transition-speed ease-in-out;
+
+    @include media(tablet) {
+      height: 4.5rem;
+    }
+    @include media(laptop) {
+      width: 4rem;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      &:hover {
+        width: unset;
+      }
+
+      &:hover .navbar__link>span {
+        display: inline;
+      }
+    }
+    @include media(desktop) {
+      width: 100vw;
+      height: 3.5rem;
+      flex-direction: row;
+      justify-content: center;
+
+      &:hover {
+        width: 100vw;
+      }
+    }
+  }
+
+  &__item {
+    height: 100%;
+    flex: 1;
+
+    @include media(laptop) {
+      width: 100%;
+      flex: 0;
+    }
+  }
+
+  &__link {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include media(laptop) {
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1.5rem 1rem;
+    }
+    @include media(desktop) {
+      padding: 0 2rem;
+    }
+
+    img {
+      width: 2rem;
+      max-height: 2rem;
+      filter: invert(56%) sepia(30%) saturate(1039%) hue-rotate(131deg) brightness(95%) contrast(90%);
+      transition: scale $navbar-icon-transition-speed ease-in-out;
+
+      @include media(desktop) {
+        display: none;
+      }
+    }
+
+    span {
+      display: none;
+
+      @include media(tablet) {
+        display: inline;
+        color: white
+      }
+      @include media(laptop) {
+        display: none;
+        margin-left: 0.7rem;
+      }
+      @include media(desktop) {
+        display: inline;
+        margin-left: 0;
+      }
+    }
+
+    &:hover {
+      background-color: $navbar-bg-secondary;
+
+      img {
+        transform: scale(1.2);
+
+        @include media(tablet) {
+          transform: scale(1.1);
+        }
+        @include media(laptop) {
+          transform: none;
+        }
+      }
+    }
+  }
+}
+
+.navbar__link.active {
+  background-color: $navbar-item-active;
+
+  span {
+    color: $navbar-txt-secondary
+  }
+}
