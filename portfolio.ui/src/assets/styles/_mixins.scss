@@ -1,0 +1,17 @@
+@use "./variables" as *;
+
+@mixin media($screen) {
+  @if $screen == tablet {
+    @media screen and (min-width: $bp-tablet) {
+      @content;
+    }
+  } @else if $screen == laptop {
+    @media screen and (min-width: $bp-laptop) {
+      @content;
+    }
+  } @else if $screen == desktop {
+    @media screen and (min-width: $bp-desktop) {
+      @content;
+    }
+  }
+}
